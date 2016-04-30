@@ -25,7 +25,7 @@ export default class UserInfo extends React.Component {
 
 	updateClick() {
 		
-		doUpdate();
+		this.doUpdate();
 	}
 
 	doUpdate() {
