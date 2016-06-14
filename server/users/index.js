@@ -28,6 +28,7 @@ var Users = {
 		id: 'batman',
 		provider: 'local',
         name: 'batman',
+		role: 10
 	},
 	superman: {
 		salt: '/T/4Q6I43+VtqMTSnuHOZsNg1XCMZw6dI5SZE3rzNyY=',
@@ -37,6 +38,7 @@ var Users = {
 		id: 'superman',
 		provider: 'local',
         name: 'superman',
+		role: 10
 	},
 	admin: {
 		salt: '/T/4Q6I43+VtqMTSnuHOZsNg1XCMZw6dI5SZE3rzNyY=',
@@ -46,6 +48,7 @@ var Users = {
 		id: 'admin',
 		provider: 'local',
         name: 'admin',
+		role: 1
 	}
 };
 
@@ -77,7 +80,8 @@ var addUser = function addUser(id, password, email, name, cb){
 				email: email,
 				id: id,
 				provider: 'local',
-				name: name
+				name: name,
+				role: 10
 			};
 
 			return cb(null, Users[id]);

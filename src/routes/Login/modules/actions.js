@@ -2,7 +2,7 @@
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
 
 
-export function requestLogin(userId) {
-	console.log('requestLogin: ' + userId);
-	return { type: REQUEST_LOGIN, userid: userId, message: null };
+export function requestLogin(userId, role) {
+	console.log('requestLogin: ' + userId + ', role: ' + role);
+	return { type: REQUEST_LOGIN, userid: userId, role: role, message: null };
 }

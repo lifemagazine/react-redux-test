@@ -18,7 +18,7 @@ let rootElement = document.getElementById('root');
 ReactDom.render(
 	<Provider store={store}>
 		<Router history = {browserHistory}>
-			<Route path = "/" component = {App} userid={store.getState().userid} >
+			<Route path = "/" component = {App} userid={store.getState().userid} role={store.getState().role} >
 				<IndexRoute component = {MainPage} />
 				<Route path = "Login" component = {Login} />
 				<Route path = "Register" component = {Register} />

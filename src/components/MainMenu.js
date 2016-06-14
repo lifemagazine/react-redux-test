@@ -31,36 +31,6 @@ class MenuBar extends Component {
 
 	logoutClick(e) {
 		e.preventDefault();
-		// requestLogout
-		//this.props.logout(this.props.userid);
-		//browserHistory.pushState(null, '/MainPage');
-
-		/* fetch('/userlist')
-			.then((response) => response.json())
-			.then((responseData) => {
-				this.setState({userData: responseData});
-		})
-			.catch((error) => {
-				console.log('Error fetching and parsing data', error');
-		}); */
-
-		/* let itself = this;
-		let _promise = function () {
-			return new Promise(function (resolve, reject) {
-				window.setTimeout(function () {
-					resolve('logout ok');
-				}, 1000);
-			});
-		};
-
-		_promise()
-		.then(function (text) {
-			console.log(text);
-			itself.props.logout();
-			browserHistory.pushState(null, '/MainPage');
-		}, function (error) {
-			console.log('logout fail: ' + error);
-		}); */
 
 		let itself = this;
 
@@ -95,16 +65,29 @@ class MenuBar extends Component {
 					<li><Link to="Register" value="Register"> Register</Link></li>
 				</ul>;
 		} else {
-			leftMenu = 
-				<ul className="nav navbar-nav">
-					<li><Link to="MainPage" value="MainPage">MainPage</Link></li>
-					<li><Link to="UserList" value="UserList">UserList</Link></li>
-				</ul>;
+			if (this.props.role == 1) {
+				leftMenu = 
+					<ul className="nav navbar-nav">
+						<li><Link to="MainPage" value="MainPage">MainPage</Link></li>
+						<li><Link to="UserList" value="UserList">UserList</Link></li>
+					</ul>;
 
-			rightMenu = 
-				<ul className="nav navbar-nav navbar-right">
-					<li><a onClick={this.logoutClick} style={logoutStyle}>{this.props.userid} Logout</a></li>
-				</ul>;
+				rightMenu = 
+					<ul className="nav navbar-nav navbar-right">
+						<li><a onClick={this.logoutClick} style={logoutStyle}>[Admin] {this.props.userid} Logout</a></li>
+					</ul>;
+			} else {
+				leftMenu = 
+					<ul className="nav navbar-nav">
+						<li><Link to="MainPage" value="MainPage">MainPage</Link></li>
+					</ul>;
+
+				rightMenu = 
+					<ul className="nav navbar-nav navbar-right">
+					<li><a onClick={this.logoutClick} style={logoutStyle}>[Member] {this.props.userid} Logout</a></li>
+					</ul>;
+			}
+
 		}
 		
 		return (
@@ -122,7 +105,8 @@ class MenuBar extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        userid: state.loginReducer.userid
+        userid: state.loginReducer.userid,
+		role: state.loginReducer.role
     };
 }
 

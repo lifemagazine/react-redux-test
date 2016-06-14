@@ -1,15 +1,12 @@
 
-//import { REQUEST_LOGIN }  from '../../../routes/Login/modules/actions';
-
-
-const loginReducer = (state = {userid: null, message: null}, action) => {
+const loginReducer = (state = {userid: null, role: 100, message: null}, action) => {
 	if (state == null) {
 		console.log('state is null');
 		state = {userid: null, message: null};
 	} else {
-		console.log('userid: ' + action.userid);
+		console.log('userid: ' + action.userid + ', role: ' + action.role);
 	}
-	return Object.assign({}, state, { userid: action.userid, message: action.message });
+	return Object.assign({}, state, { userid: action.userid, role: action.role, message: action.message });
 }
 
 export default loginReducer;

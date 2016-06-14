@@ -22058,35 +22058,6 @@
 			key: 'logoutClick',
 			value: function logoutClick(e) {
 				e.preventDefault();
-				// requestLogout
-				//this.props.logout(this.props.userid);
-				//browserHistory.pushState(null, '/MainPage');
-
-				/* fetch('/userlist')
-	   	.then((response) => response.json())
-	   	.then((responseData) => {
-	   		this.setState({userData: responseData});
-	   })
-	   	.catch((error) => {
-	   		console.log('Error fetching and parsing data', error');
-	   }); */
-
-				/* let itself = this;
-	   let _promise = function () {
-	   	return new Promise(function (resolve, reject) {
-	   		window.setTimeout(function () {
-	   			resolve('logout ok');
-	   		}, 1000);
-	   	});
-	   };
-	   		_promise()
-	   .then(function (text) {
-	   	console.log(text);
-	   	itself.props.logout();
-	   	browserHistory.pushState(null, '/MainPage');
-	   }, function (error) {
-	   	console.log('logout fail: ' + error);
-	   }); */
 
 				var itself = this;
 
@@ -37830,6 +37801,7 @@
 					data: JSON.stringify(formData),
 					contentType: "application/json; charset=utf-8",
 					success: function success(data) {
+						console.log(data);
 						alert('login ok: ' + textUserid);
 						itself.props.login(textUserid);
 					},
@@ -38477,7 +38449,7 @@
 			key: 'updateClick',
 			value: function updateClick() {
 
-				doUpdate();
+				this.doUpdate();
 			}
 		}, {
 			key: 'doUpdate',

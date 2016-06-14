@@ -31,8 +31,9 @@ exports.auth = function auth(req, res) {
 			user.passwordCheck(password, profile.password, profile.salt, profile.work, function(err,isAuth){
 				if (isAuth) {
 					req.session.isAuthenticated = true;
+					req.session.role = profile.role;
 					res.contentType('application/json').status(200);
-					res.send(JSON.stringify({message: 'login OK'}));
+					res.send(JSON.stringify({message: 'login OK', role: profile.role}));
 				} else {
 					console.log('Wrong Password');
 					res.status(400).send(JSON.stringify({
@@ -87,10 +88,16 @@ exports.register = function register(req, res) {
 };
 
 exports.getUserList = function getUserList(req, res) {
-	let userList = user.getAllUser();
-	console.log(userList);
-	res.contentType('application/json').status(200);
-	res.send(JSON.stringify(userList));
+	if (req.session.role == 1) {
+		let userList = user.getAllUser();
+		console.log(userList);
+		res.contentType('application/json').status(200);
+		res.send(JSON.stringify(userList));
+	} else {
+		console.log("permission error: " + req.session.role);
+		res.contentType('application/json').status(200);
+		res.send(JSON.stringify({status: 400, message: 'permission error' }));
+	}
 };
 
 exports.updateUser = function updateUser(req, res) {

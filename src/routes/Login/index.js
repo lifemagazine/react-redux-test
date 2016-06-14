@@ -38,8 +38,10 @@ class Login extends React.Component {
             data : JSON.stringify(formData),
             contentType: "application/json; charset=utf-8",
             success: function(data) {
+				console.log(data);
+				console.log(data.role);
                 alert('login ok: ' + textUserid);
-				itself.props.login(textUserid);
+				itself.props.login(textUserid, data.role);
             },
             error: function(err) {
                 alert('login failed. check userid or password');
@@ -95,7 +97,7 @@ class Login extends React.Component {
 
 let mapDispatchToProps = (dispatch) => {
 	return {
-		login: (userId) => dispatch(requestLogin(userId))
+		login: (userId, role) => dispatch(requestLogin(userId, role))
 	};
 }
 
